@@ -1,0 +1,6 @@
+[submodule "zhen-nuxt-frontend"]
+	path = zhen-nuxt-frontend
+	url = git@github.com:KyrianC/zhen-nuxt-frontend.git
+[submodule "zhen-core"]
+	path = zhen-core
+	url = git@github.com:KyrianC/zhen-core.git
