@@ -2,7 +2,7 @@
 
 * Setup
 ** Development
-Create .env file, it should contain:
+Create =.env= file, it should contain:
 + =BASE_URL=: base url used by axios on frontend (eg: ~http://localchost:8000/api~)
 + =SECRET_KEY=: django secret key
 + =DEBUG=: django debug settings, ~1~ for True, ~0~ for False
@@ -30,3 +30,34 @@ Create django super user:
 docker-compose exec api python manage.py createsuperuser
 #+end_src
 ** TODO Production
+create =.env.prod= file, it should contain
++ =BASE_URL=: base url used by axios on frontend (eg: ~http://localchost:8000/api~)
++ =SECRET_KEY=: django secret key
++ =DJANGO_SETTINGS_MODULE=: which django settings module to use (eg: ~config.settings.dev~)
++ =POSTGRES_ENGINE=
++ =POSTGRES_USER=
++ =POSTGRES_PASSWORD=
++ =POSTGRES_DB=
++ =POSTGRES_HOST=
++ =POSTGRES_PORT=
++ ...
+
+Create requirements.txt file for django app:
+#+begin_src shell
+pipenv lock -r > requirements.txt
+#+end_src
+
+Build containers and start them:
+#+begin_src shell
+docker-compose -f docker-compose.prod.yml up --build
+#+end_src
+
+Apply django migrations:
+#+begin_src shell
+docker-compose exec api python manage.py migrate
+#+end_src
+
+Create django super user:
+#+begin_src shell
+docker-compose exec api python manage.py createsuperuser
+#+end_src
